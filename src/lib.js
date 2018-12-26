@@ -24,9 +24,9 @@ const getWordCount = function(content) {
 
 const getCounts = function(file) {
   return {
-    w: getWordCount(file),
-    c: getCharCount(file),
-    l: getLineCount(file)
+    word: getWordCount(file),
+    char: getCharCount(file),
+    line: getLineCount(file)
   };
 };
 

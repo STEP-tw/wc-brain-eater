@@ -16,21 +16,29 @@ const compareOptions = function(option1, option2) {
     w: 2,
     c: 3
   };
-  let option1OrderVal = optionsOrder[option1];
-  let option2OrderVal = optionsOrder[option2];
-  return option1OrderVal - option2OrderVal;
+  return optionsOrder[option1] - optionsOrder[option2];
+};
+
+const toLongOption = function(shortOption) {
+  const longOptions = {
+    l: "line",
+    w: "word",
+    c: "char"
+  };
+  return longOptions[shortOption] || shortOption;
 };
 
 const parseOptions = function(optionArgs) {
   let parsedOptions = optionArgs.map(splitOptions);
   parsedOptions = toLinear(parsedOptions);
-  return parsedOptions.sort(compareOptions);
+  parsedOptions = parsedOptions.sort(compareOptions);
+  return parsedOptions.map(toLongOption);
 };
 
 const parse = function(args) {
   let firstArg = args[0];
   let fileName = firstArg;
-  let options = ["l", "w", "c"];
+  let options = ["line", "word", "char"];
   if (isOption(firstArg)) {
     let optionArgs = args.filter(isOption);
     options = parseOptions(optionArgs);

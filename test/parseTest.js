@@ -4,7 +4,7 @@ const { deepEqual } = require("assert");
 describe("parse", function() {
   it("should return all options and fileName when only file name is given", function() {
     let expectedOutput = {
-      options: ["l", "w", "c"],
+      options: ["line", "word", "char"],
       fileName: "file"
     };
     let actualOutput = parse(["file"]);
@@ -13,7 +13,7 @@ describe("parse", function() {
 
   it("should return given option and fileName when option and file name is given", function() {
     let expectedOutput = {
-      options: ["l"],
+      options: ["line"],
       fileName: "file"
     };
     let actualOutput = parse(["-l", "file"]);
@@ -22,7 +22,7 @@ describe("parse", function() {
 
   it("should return given options and fileName when options and file name is given", function() {
     let expectedOutput = {
-      options: ["l", "w"],
+      options: ["line", "word"],
       fileName: "file"
     };
     let actualOutput = parse(["-lw", "file"]);
@@ -31,7 +31,7 @@ describe("parse", function() {
 
   it("should return given options and fileName when multiple options  given seperately  and file name is given", function() {
     let expectedOutput = {
-      options: ["l", "w"],
+      options: ["line", "word"],
       fileName: "file"
     };
     let actualOutput = parse(["-l", "-w", "file"]);
