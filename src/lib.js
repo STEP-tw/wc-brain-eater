@@ -16,8 +16,8 @@ const getCharCount = function(content) {
 };
 
 const getWordsCount = function(content) {
-  let contentWithoutNewline = replace(content, NEWLINE, SPACE);
-  return contentWithoutNewline.split(SPACE).filter(isNotEmpty).length;
+  content = replace(content, NEWLINE, SPACE);
+  return content.split(SPACE).filter(isNotEmpty).length;
 };
 
 const count = function(fileName, fs) {
