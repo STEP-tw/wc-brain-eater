@@ -31,4 +31,16 @@ describe("count", function() {
     const expectedOutput = "10 file";
     equal(actualOutput, expectedOutput);
   });
+
+  it("should return counts based on given options when a single file and two options together is given ", function() {
+    const actualOutput = count(["-lw", "file"], fs);
+    const expectedOutput = "2\t10 file";
+    equal(actualOutput, expectedOutput);
+  });
+
+  it("should return counts based on given options when a single file and multiple options together is given ", function() {
+    const actualOutput = count(["-wlc", "file"], fs);
+    const expectedOutput = "10\t2\t41 file";
+    equal(actualOutput, expectedOutput);
+  });
 });

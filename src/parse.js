@@ -5,8 +5,7 @@ const parse = function(args) {
   let fileName = firstArg;
   let options = ["l", "w", "c"];
   if (isOption(firstArg)) {
-    let option = firstArg[1];
-    options = [option];
+    options = firstArg.slice(1).split("");
     fileName = secondArg;
   }
   return { options, fileName };

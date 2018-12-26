@@ -19,4 +19,13 @@ describe("parse", function() {
     let actualOutput = parse(["-l", "file"]);
     deepEqual(expectedOutput, actualOutput);
   });
+
+  it("should return given options when options and file name is given", function() {
+    let expectedOutput = {
+      options: ["l", "w"],
+      fileName: "file"
+    };
+    let actualOutput = parse(["-lw", "file"]);
+    deepEqual(expectedOutput, actualOutput);
+  });
 });
