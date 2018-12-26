@@ -1,0 +1,3 @@
+* node wc.js wc.js
+    * write high level test for wc
+    * write count function
