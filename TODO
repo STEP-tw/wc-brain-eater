@@ -2,4 +2,7 @@
     * write high level test for wc
     * write count function
 * Need to write right aligner
-    *have to move util functions to util
+    * have to move util functions to util
+*node wc.js wc.js  
+    * need to make count accept -l option
+    
