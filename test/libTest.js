@@ -40,13 +40,13 @@ describe("count", function() {
 
   it("should return counts based on given options when a single file and multiple options together is given ", function() {
     const actualOutput = count(["-wlc", "file"], fs);
-    const expectedOutput = "10\t2\t41 file";
+    const expectedOutput = "2\t10\t41 file";
     equal(actualOutput, expectedOutput);
   });
 
   it("should return given options and fileName when multiple options  given seperately  and file name is given", function() {
     const actualOutput = count(["-w", "-l", "-c", "file"], fs);
-    const expectedOutput = "10\t2\t41 file";
+    const expectedOutput = "2\t10\t41 file";
     equal(actualOutput, expectedOutput);
   });
 });
