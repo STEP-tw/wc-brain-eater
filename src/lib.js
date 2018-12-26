@@ -25,7 +25,7 @@ const getCounts = function(fileContent) {
   };
 };
 
-const getFileDetails = function(fs, fileName, options) {
+const getFileDetails = function(fs, options, fileName) {
   let fileDetails = { name: fileName };
   let content = fs.readFileSync(fileName, "utf-8");
   const counts = getCounts(content);
@@ -36,9 +36,11 @@ const getFileDetails = function(fs, fileName, options) {
 };
 
 const count = function(args, fs) {
-  let { options, fileName } = parse(args);
-  const fileDetails = getFileDetails(fs, fileName, options);
-  return formatOutput(fileDetails);
+  let { options, fileNames } = parse(args);
+  const fileDetailsObjects = fileNames.map(
+    getFileDetails.bind(null, fs, options)
+  );
+  return fileDetailsObjects.map(formatOutput).join("\n");
 };
 
 module.exports = {

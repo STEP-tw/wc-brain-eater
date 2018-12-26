@@ -27,15 +27,15 @@ const parseOptions = function(optionArgs) {
 
 const parse = function(args) {
   let firstArg = args[0];
-  let fileName = firstArg;
+  let fileNames = args;
   let options = ["lines", "words", "chars"];
   if (isOption(firstArg)) {
     let optionArgs = args.filter(isOption);
     options = parseOptions(optionArgs);
     let fileNameIndex = optionArgs.length;
-    fileName = args[fileNameIndex];
+    fileNames = args.slice(fileNameIndex);
   }
-  return { options, fileName };
+  return { options, fileNames };
 };
 
 module.exports = { parse };
