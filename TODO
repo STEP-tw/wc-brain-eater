@@ -3,6 +3,9 @@
     * write count function
 * Need to write right aligner
     * have to move util functions to util
-*node wc.js wc.js  
+*node wc.js -l wc.js  
     * need to make count accept -l option
-    
+        
+*node wc.js -c wc.js  
+    * need to make count accept -c option
+    * need to write parse.js

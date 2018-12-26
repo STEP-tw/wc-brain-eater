@@ -19,4 +19,16 @@ describe("count", function() {
     const expectedOutput = "2 file";
     equal(actualOutput, expectedOutput);
   });
+
+  it("should return character count when a single file and -c as option is given ", function() {
+    const actualOutput = count(["-c", "file"], fs);
+    const expectedOutput = "41 file";
+    equal(actualOutput, expectedOutput);
+  });
+
+  it("should return word count when a single file and -w as option is given ", function() {
+    const actualOutput = count(["-w", "file"], fs);
+    const expectedOutput = "10 file";
+    equal(actualOutput, expectedOutput);
+  });
 });
