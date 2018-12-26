@@ -11,7 +11,7 @@ describe("parse", function() {
     deepEqual(expectedOutput, actualOutput);
   });
 
-  it("should return given option when option and file name is given", function() {
+  it("should return given option and fileName when option and file name is given", function() {
     let expectedOutput = {
       options: ["l"],
       fileName: "file"
@@ -20,12 +20,21 @@ describe("parse", function() {
     deepEqual(expectedOutput, actualOutput);
   });
 
-  it("should return given options when options and file name is given", function() {
+  it("should return given options and fileName when options and file name is given", function() {
     let expectedOutput = {
       options: ["l", "w"],
       fileName: "file"
     };
     let actualOutput = parse(["-lw", "file"]);
+    deepEqual(expectedOutput, actualOutput);
+  });
+
+  it("should return given options and fileName when multiple options  given seperately  and file name is given", function() {
+    let expectedOutput = {
+      options: ["l", "w"],
+      fileName: "file"
+    };
+    let actualOutput = parse(["-l", "-w", "file"]);
     deepEqual(expectedOutput, actualOutput);
   });
 });

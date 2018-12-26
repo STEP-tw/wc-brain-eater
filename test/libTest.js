@@ -43,4 +43,10 @@ describe("count", function() {
     const expectedOutput = "10\t2\t41 file";
     equal(actualOutput, expectedOutput);
   });
+
+  it("should return given options and fileName when multiple options  given seperately  and file name is given", function() {
+    const actualOutput = count(["-w", "-l", "-c", "file"], fs);
+    const expectedOutput = "10\t2\t41 file";
+    equal(actualOutput, expectedOutput);
+  });
 });

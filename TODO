@@ -9,3 +9,4 @@
     * need to make count accept -c option
     * need to write parse.js
 * Need to make wc work with combined options eg -lw
+* Need to upgrade parse function to accept options in multiple arguments eg:"-l -w -c"

@@ -1,9 +1,5 @@
 /* 
   Usage:
-  node ./wc.js file1
-  node ./wc.js -l file1
-  node ./wc.js -c file1
-  node ./wc.js -w file1
   node ./wc.js file1 file2
   node ./wc.js -lw file1 [file2]...
   node ./wc.js -wl file1 [file2]...
@@ -28,7 +24,25 @@
   node ./wc.js -w -c -l file1 [file2]...
   node ./wc.js -c -w -l file1 [file2]...
   node ./wc.js -c -l -w file1 [file2]...
-*/
+  
+  
+  completed:
+  node ./wc.js file1
+  node ./wc.js -l file1
+  node ./wc.js -c file1
+  node ./wc.js -w file1
+  node ./wc.js -lw file1 
+  node ./wc.js -wl file1 
+  node ./wc.js -cl file1 
+  node ./wc.js -lc file1 
+  node ./wc.js -wc file1 
+  node ./wc.js -cw file1 
+  node ./wc.js -lcw file1 
+  node ./wc.js -lwc file1 
+  node ./wc.js -wcc file1 
+  node ./wc.js -wlc file1 
+  node ./wc.js -wlc file1 
+  */
 
 const { count } = require("./src/lib");
 const fs = require("fs");
