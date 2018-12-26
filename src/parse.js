@@ -10,35 +10,25 @@ const toLinear = function(matrix) {
   return matrix.reduce(concat);
 };
 
-const compareOptions = function(option1, option2) {
-  let optionsOrder = {
-    l: 1,
-    w: 2,
-    c: 3
-  };
-  return optionsOrder[option1] - optionsOrder[option2];
-};
-
 const toLongOption = function(shortOption) {
   const longOptions = {
-    l: "line",
-    w: "word",
-    c: "char"
+    l: "lines",
+    w: "words",
+    c: "chars"
   };
-  return longOptions[shortOption] || shortOption;
+  return longOptions[shortOption];
 };
 
 const parseOptions = function(optionArgs) {
   let parsedOptions = optionArgs.map(splitOptions);
   parsedOptions = toLinear(parsedOptions);
-  parsedOptions = parsedOptions.sort(compareOptions);
   return parsedOptions.map(toLongOption);
 };
 
 const parse = function(args) {
   let firstArg = args[0];
   let fileName = firstArg;
-  let options = ["line", "word", "char"];
+  let options = ["lines", "words", "chars"];
   if (isOption(firstArg)) {
     let optionArgs = args.filter(isOption);
     options = parseOptions(optionArgs);

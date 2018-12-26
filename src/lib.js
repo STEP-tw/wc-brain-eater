@@ -1,13 +1,8 @@
-const {
-  NEWLINE,
-  EMPTY,
-  SPACE,
-  isNotEmpty,
-  TAB,
-  replace
-} = require("./stringUtils");
+const { NEWLINE, EMPTY, SPACE, isNotEmpty, replace } = require("./stringUtils");
 
 const { parse } = require("./parse");
+
+const { formatOutput } = require("./formatOutput");
 
 const getLineCount = function(content) {
   return content.split(NEWLINE).length - 1;
@@ -22,20 +17,28 @@ const getWordCount = function(content) {
   return content.split(SPACE).filter(isNotEmpty).length;
 };
 
-const getCounts = function(file) {
+const getCounts = function(fileContent) {
   return {
-    word: getWordCount(file),
-    char: getCharCount(file),
-    line: getLineCount(file)
+    words: getWordCount(fileContent),
+    chars: getCharCount(fileContent),
+    lines: getLineCount(fileContent)
   };
+};
+
+const getFileDetails = function(fs, fileName, options) {
+  let fileDetails = { name: fileName };
+  let content = fs.readFileSync(fileName, "utf-8");
+  const counts = getCounts(content);
+  for (option of options) {
+    fileDetails[option] = counts[option];
+  }
+  return fileDetails;
 };
 
 const count = function(args, fs) {
   let { options, fileName } = parse(args);
-  const file = fs.readFileSync(fileName, "utf-8");
-  let counts = getCounts(file);
-  let requestedCounts = options.map(option => counts[option]);
-  return requestedCounts.join(TAB) + SPACE + fileName;
+  const fileDetails = getFileDetails(fs, fileName, options);
+  return formatOutput(fileDetails);
 };
 
 module.exports = {
