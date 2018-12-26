@@ -1,4 +1,4 @@
-const TAB = "      ";
+const TAB = "\t";
 const NEWLINE = "\n";
 const EMPTY = "";
 const SPACE = " ";

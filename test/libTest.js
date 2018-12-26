@@ -10,7 +10,7 @@ const fs = {
 describe("count", function() {
   it("should return line,word and character counts when a single file is given ", function() {
     const actualOutput = count("file", fs);
-    const expectedOutput = "      3      10      41 file";
+    const expectedOutput = "\t3\t10\t41 file";
     equal(actualOutput, expectedOutput);
   });
 });
