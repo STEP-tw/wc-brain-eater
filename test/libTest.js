@@ -59,25 +59,25 @@ describe("count", function() {
   describe("multipleFiles", function() {
     it("should return defaults counts when a multiple files are given ", function() {
       const actualOutput = count(["file1", "file2"], fs);
-      const expectedOutput = "2\t10\t41 file1\n2\t3\t13 file2";
+      const expectedOutput = "2\t10\t41 file1\n2\t3\t13 file2\n4\t13\t54 total";
       equal(actualOutput, expectedOutput);
     });
 
     it("should return line count when a multiple files and -l as option is given ", function() {
       const actualOutput = count(["-l", "file1", "file2"], fs);
-      const expectedOutput = "2 file1\n2 file2";
+      const expectedOutput = "2 file1\n2 file2\n4 total";
       equal(actualOutput, expectedOutput);
     });
 
     it("should return character count when a multiple files and -c as option is given ", function() {
       const actualOutput = count(["-c", "file1", "file2"], fs);
-      const expectedOutput = "41 file1\n13 file2";
+      const expectedOutput = "41 file1\n13 file2\n54 total";
       equal(actualOutput, expectedOutput);
     });
 
     it("should return word count when a multiple files and -w as option is given ", function() {
       const actualOutput = count(["-w", "file1", "file2"], fs);
-      const expectedOutput = "10 file1\n3 file2";
+      const expectedOutput = "10 file1\n3 file2\n13 total";
       equal(actualOutput, expectedOutput);
     });
   });

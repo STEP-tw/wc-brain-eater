@@ -35,11 +35,28 @@ const getFileDetails = function(fs, options, fileName) {
   return fileDetails;
 };
 
+const addFileDetails = function(file1Details, file2Details) {
+  let lines = file1Details.lines + file2Details.lines;
+  let words = file1Details.words + file2Details.words;
+  let chars = file1Details.chars + file2Details.chars;
+  let name = "total";
+  return { name, lines, words, chars };
+};
+
+const getTotalCountsObject = function(fileDetailsObjects) {
+  let totalObject = { lines: 0, words: 0, chars: 0 };
+  return fileDetailsObjects.reduce(addFileDetails, totalObject);
+};
+
 const count = function(args, fs) {
   let { options, fileNames } = parse(args);
   const fileDetailsObjects = fileNames.map(
     getFileDetails.bind(null, fs, options)
   );
+  if (fileNames.length > 1) {
+    let totalDetailsObject = getTotalCountsObject(fileDetailsObjects);
+    fileDetailsObjects.push(totalDetailsObject);
+  }
   return fileDetailsObjects.map(formatOutput).join("\n");
 };
 
