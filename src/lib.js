@@ -1,28 +1,23 @@
-const TAB = "\t";
-const NEWLINE = "\n";
-const EMPTY = "";
-const SPACE = " ";
-
-const isNotEmpty = x => x != EMPTY;
+const {
+  NEWLINE,
+  EMPTY,
+  SPACE,
+  isNotEmpty,
+  TAB,
+  replace
+} = require("./stringUtils");
 
 const getLinesCount = function(content) {
-  return content.split(NEWLINE).length;
+  return content.split(NEWLINE).length - 1;
 };
 
 const getCharCount = function(content) {
   return content.split(EMPTY).length;
 };
 
-const wordsCount = function(line) {
-  return line.split(SPACE).filter(isNotEmpty).length;
-};
-
-const add = (num1, num2) => num1 + num2;
-
 const getWordsCount = function(content) {
-  let lines = content.split(NEWLINE);
-  let wordCounts = lines.map(wordsCount);
-  return wordCounts.reduce(add);
+  let contentWithoutNewline = replace(content, NEWLINE, SPACE);
+  return contentWithoutNewline.split(SPACE).filter(isNotEmpty).length;
 };
 
 const count = function(fileName, fs) {
@@ -30,8 +25,8 @@ const count = function(fileName, fs) {
   let noOflines = getLinesCount(file);
   let noOfWords = getWordsCount(file);
   let noOfCharacters = getCharCount(file);
-  let output = ["", noOflines, noOfWords, noOfCharacters].join(TAB);
-  return output + " " + fileName;
+  let output = [noOflines, noOfWords, noOfCharacters].join(TAB);
+  return output + SPACE + fileName;
 };
 
 module.exports = {

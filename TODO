@@ -1,3 +1,5 @@
 * node wc.js wc.js
     * write high level test for wc
     * write count function
+* Need to write right aligner
+    *have to move util functions to util
