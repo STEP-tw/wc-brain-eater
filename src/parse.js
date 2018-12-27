@@ -1,3 +1,5 @@
+const { isIncludes } = require("./utils");
+
 const isOption = x => x.startsWith("-");
 
 const splitOptions = function(options) {
@@ -22,6 +24,8 @@ const toLongOption = function(shortOption) {
 const parseOptions = function(optionArgs) {
   let parsedOptions = optionArgs.map(splitOptions);
   parsedOptions = toLinear(parsedOptions);
+  let allOptions = ["l", "c", "w"];
+  parsedOptions = allOptions.filter(isIncludes.bind(null, parsedOptions)); //will get sorted and removes duplicate elements
   return parsedOptions.map(toLongOption);
 };
 
