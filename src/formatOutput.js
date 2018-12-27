@@ -1,4 +1,4 @@
-const { TAB, SPACE, isUndefined } = require("./stringUtils");
+const { TAB, SPACE } = require("./stringUtils");
 
 const isNumber = x => !isNaN(x);
 const formatOutput = function(fileDetails) {

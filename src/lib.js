@@ -2,8 +2,6 @@ const { NEWLINE, EMPTY, SPACE, isNotEmpty, replace } = require("./stringUtils");
 
 const { parse } = require("./parse");
 
-const { concat } = require("./utils");
-
 const { formatOutput } = require("./formatOutput");
 
 const getLineCount = function(content) {
@@ -31,11 +29,9 @@ const getFileDetails = function(fs, options, fileName) {
   let fileDetails = { name: fileName };
   let content = fs.readFileSync(fileName, "utf-8");
   const counts = getCounts(content);
-  let requiredCounts = {};
-  for (option of options) {
-    requiredCounts[option] = counts[option];
-  }
-  fileDetails = concat(fileDetails, requiredCounts);
+  options.forEach(option => {
+    fileDetails[option] = counts[option];
+  });
   return fileDetails;
 };
 

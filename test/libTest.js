@@ -3,7 +3,7 @@ const { count } = require("../src/lib");
 
 const fs = {
   files: {
-    file1: "This is a file\nIt is used for Testing\n wc",
+    file1: "This is a  file\nIt is used for Testing\n wc",
     file2: "This\nis\nfile2"
   },
   readFileSync: function(fileName, encoding) {
@@ -15,7 +15,7 @@ describe("count", function() {
   describe("single file", function() {
     it("should return line,word and character counts when a single file is given ", function() {
       const actualOutput = count(["file1"], fs);
-      const expectedOutput = "2\t10\t41 file1";
+      const expectedOutput = "2\t10\t42 file1";
       equal(actualOutput, expectedOutput);
     });
 
@@ -27,7 +27,7 @@ describe("count", function() {
 
     it("should return character count when a single file and -c as option is given ", function() {
       const actualOutput = count(["-c", "file1"], fs);
-      const expectedOutput = "41 file1";
+      const expectedOutput = "42 file1";
       equal(actualOutput, expectedOutput);
     });
 
@@ -45,13 +45,13 @@ describe("count", function() {
 
     it("should return counts based on given options when a single file and multiple options together is given ", function() {
       const actualOutput = count(["-wlc", "file1"], fs);
-      const expectedOutput = "2\t10\t41 file1";
+      const expectedOutput = "2\t10\t42 file1";
       equal(actualOutput, expectedOutput);
     });
 
     it("should return  counts based on given options and fileName when multiple options  given seperately  and file name is given", function() {
       const actualOutput = count(["-w", "-l", "-c", "file1"], fs);
-      const expectedOutput = "2\t10\t41 file1";
+      const expectedOutput = "2\t10\t42 file1";
       equal(actualOutput, expectedOutput);
     });
   });
@@ -59,7 +59,7 @@ describe("count", function() {
   describe("multipleFiles", function() {
     it("should return defaults counts when a multiple files are given ", function() {
       const actualOutput = count(["file1", "file2"], fs);
-      const expectedOutput = "2\t10\t41 file1\n2\t3\t13 file2\n4\t13\t54 total";
+      const expectedOutput = "2\t10\t42 file1\n2\t3\t13 file2\n4\t13\t55 total";
       equal(actualOutput, expectedOutput);
     });
 
@@ -71,7 +71,7 @@ describe("count", function() {
 
     it("should return character count when a multiple files and -c as option is given ", function() {
       const actualOutput = count(["-c", "file1", "file2"], fs);
-      const expectedOutput = "41 file1\n13 file2\n54 total";
+      const expectedOutput = "42 file1\n13 file2\n55 total";
       equal(actualOutput, expectedOutput);
     });
 

@@ -5,8 +5,6 @@ const SPACE = " ";
 
 const isNotEmpty = string => string != EMPTY;
 
-const isUndefined = ele => ele != undefined;
-
 const replace = function(text, stringToReplace, replacingString) {
   return text.split(stringToReplace).join(replacingString);
 };
@@ -17,6 +15,5 @@ module.exports = {
   NEWLINE,
   SPACE,
   isNotEmpty,
-  isUndefined,
   replace
 };
