@@ -4,7 +4,8 @@ const { count } = require("../src/lib");
 const fs = {
   files: {
     file1: "This is a  file\nIt is used for Testing\n wc",
-    file2: "This\nis\nfile2"
+    file2: "This\nis\nfile2",
+    emptyFile: ""
   },
   readFileSync: function(fileName, encoding) {
     return this.files[fileName];
@@ -19,6 +20,12 @@ describe("count", function() {
     it("should return line,word and character counts when a single file is given ", function() {
       const actualOutput = count(["file1"], fs);
       const expectedOutput = "2\t10\t42 file1";
+      equal(actualOutput, expectedOutput);
+    });
+
+    it("should return line,word and character counts as 0 when a empty file is given ", function() {
+      const actualOutput = count(["emptyFile"], fs);
+      const expectedOutput = "0\t0\t0 emptyFile";
       equal(actualOutput, expectedOutput);
     });
 
