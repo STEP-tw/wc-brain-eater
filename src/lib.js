@@ -25,8 +25,22 @@ const getCounts = function(fileContent) {
   };
 };
 
+const getDefaultFileDetails = function(fileName, defaultValue) {
+  return {
+    name: fileName,
+    exists: false,
+    words: defaultValue,
+    chars: defaultValue,
+    lines: defaultValue
+  };
+};
+
 const getFileDetails = function(fs, options, fileName) {
-  let fileDetails = { name: fileName };
+  let fileDetails = getDefaultFileDetails(fileName);
+  if (!fs.existsSync(fileName)) {
+    return fileDetails;
+  }
+  fileDetails.exists = true;
   let content = fs.readFileSync(fileName, "utf-8");
   const counts = getCounts(content);
   options.forEach(option => {
@@ -40,11 +54,16 @@ const addFileDetails = function(file1Details, file2Details) {
   let words = file1Details.words + file2Details.words;
   let chars = file1Details.chars + file2Details.chars;
   let name = "total";
-  return { name, lines, words, chars };
+  let exists = file1Details.exists;
+  return { name, lines, words, chars, exists };
 };
 
+const isFileExists = fileDetails => fileDetails.exists;
+
 const getTotalCountsObject = function(fileDetailsObjects) {
-  let totalObject = { lines: 0, words: 0, chars: 0 };
+  let totalObject = getDefaultFileDetails("total", 0);
+  totalObject.exists = true;
+  fileDetailsObjects = fileDetailsObjects.filter(isFileExists); //remove not existing files
   return fileDetailsObjects.reduce(addFileDetails, totalObject);
 };
 

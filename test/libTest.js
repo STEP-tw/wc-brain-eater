@@ -8,6 +8,9 @@ const fs = {
   },
   readFileSync: function(fileName, encoding) {
     return this.files[fileName];
+  },
+  existsSync: function(fileName) {
+    return this.files[fileName] == undefined ? false : true;
   }
 };
 
