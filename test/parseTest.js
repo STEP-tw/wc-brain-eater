@@ -1,4 +1,4 @@
-const { parse } = require("../src/parse");
+const { parse, getOptionArgs } = require("../src/parse");
 const { deepEqual } = require("assert");
 
 describe("parse", function() {
@@ -44,6 +44,20 @@ describe("parse", function() {
       fileNames: ["file1", "file2"]
     };
     let actualOutput = parse(["-l", "-w", "file1", "file2"]);
+    deepEqual(expectedOutput, actualOutput);
+  });
+});
+
+describe("getOptionArgs", function() {
+  it("should return optionArgs when arguments are given ", function() {
+    let expectedOutput = ["-l", "-c"];
+    let actualOutput = getOptionArgs(["-l", "-c", "Tilak"]);
+    deepEqual(expectedOutput, actualOutput);
+  });
+
+  it("should return optionArgs which are present only in the starting of arguments when arguments are given ", function() {
+    let expectedOutput = ["-l", "-c"];
+    let actualOutput = getOptionArgs(["-l", "-c", "Tilak", "-w"]);
     deepEqual(expectedOutput, actualOutput);
   });
 });
