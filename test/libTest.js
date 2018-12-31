@@ -1,5 +1,5 @@
 const { equal, deepEqual } = require("assert");
-const { count } = require("../src/lib");
+const { count, getFileDetails } = require("../src/lib");
 
 const fs = {
   files: {
@@ -89,6 +89,32 @@ describe("count", function() {
       const actualOutput = count(["-w", "file1", "file2"], fs);
       const expectedOutput = "10 file1\n3 file2\n13 total";
       equal(actualOutput, expectedOutput);
+    });
+  });
+
+  describe("getFileDetails", function() {
+    it("should return file object with specified counts and exists ", function() {
+      const actualOutput = getFileDetails(fs, ["lines", "words"], "file1");
+      const expectedOutput = {
+        name: "file1",
+        exists: true,
+        words: 10,
+        chars: undefined,
+        lines: 2
+      };
+      deepEqual(actualOutput, expectedOutput);
+    });
+
+    it("should return file object  exists false when not existing file is given ", function() {
+      const actualOutput = getFileDetails(fs, ["lines", "words"], "file");
+      const expectedOutput = {
+        name: "file",
+        exists: false,
+        words: undefined,
+        chars: undefined,
+        lines: undefined
+      };
+      deepEqual(actualOutput, expectedOutput);
     });
   });
 });
